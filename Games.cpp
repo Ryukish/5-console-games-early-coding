@@ -1,5 +1,3 @@
-# 5-console-games-early-coding
-
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -11,14 +9,14 @@
 
 using namespace std;
 
-
 void printmenu();
 void hilo();
 void magic8ball();
 void multtable();
-void analyze();
-void rps();
+void analyze(string name);
 
+ 
+string secretword = "hello";
 string name;
 
 int main()
@@ -32,20 +30,20 @@ int main()
 		cin >> choice;
 		switch (choice)
 		{
-		case 1:
+		case 1: 
 			hilo();
 			break;
-		case 2:
+		case 2: 
 			multtable();
 			break;
-		case 3:
+		case 3:	
 			magic8ball();
 			break;
-		case 4:
+		case 4: 
 			rps();
 			break;
-		case 5:
-			cout << "Enter a word, and this program will check if it is a palindrome: ";
+		case 5: 
+			cout << "Enter a word, and this program will check if it is a palindrome";
 			cin >> name;
 			analyze();
 			break;
@@ -72,6 +70,9 @@ void printmenu()
 	cout << "3. Magic 8 ball" << endl;
 	cout << "4. Rock, Paper, Scissors" << endl;
 	cout << "5. Analyze" << endl;
+	cout << "6. Funny Face" << endl;
+	cout << "7. Hangman" << endl;
+	cout << "8. Tic Tac Toe *optional" << endl;
 	cout << "0. Quit" << endl;
 	cout << endl;
 	cout << "Enter your selection: ";
@@ -97,20 +98,21 @@ void magic8ball()
 
 	cout << "Welcome to the Magic 8-Ball Game!" << endl;
 	cout << "Type a Yes or No question to play, or type 'exit' to quit" << endl;
-	cout << "-------------------------------------------------------------" << endl;
-	cout << "Let me tell you your future" << endl;
+
 
 	while (!quit)
 	{
+		cout << "-------------------------------------------------------------" << endl;
+		cout << "Let me tell you your future" << endl;
+
 		getline(cin, userInput);
 
 		if (userInput.compare("exit") == 0)quit = true;
 
 		if (userInput.compare("") != 0 && userInput.compare("exit") != 0) {
 			{
+
 				cout << eightBall[rand() % a] << endl;
-				cout << "-------------------------------------------------------------" << endl;
-				cout << "Let me tell you your future" << endl;
 
 				userInput = "";
 			}
@@ -120,6 +122,7 @@ void magic8ball()
 	cout << "Thanks for playing!\n";
 
 	system("pause");
+	return 0;
 }
 
 void hilo()
@@ -128,30 +131,31 @@ void hilo()
 #include <ctime>
 #include <cstdlib>
 
-	int num;
-	int guess;
-	int i, n = 2;
+		int num;            
+		int guess; 
+		int i, n = 2;
 
-	srand(time(0));
-	num = rand() % 100;
+		srand(time(0));      
+		num = rand() % 100; 
 
-	for (i = 1; i<n; ++i)
-	{
-		cout << "Enter an integer greater" << " than or equal to 0 and " << "less than 100: ";
-		cin >> guess;
+		for (i = 1; i<n; ++i)
+		{
+			cout << "Enter an integer greater" << " than or equal to 0 and " << "less than 100: ";
+			cin >> guess;
 
-		if (guess == num) {
-			cout << "You guessed it in " << i << " tries!" << endl;
-			break;
+			if (guess == num) {
+				cout << "You guessed it in " << i << " tries!" << endl;
+				break;
+			}
+			else if (guess < num)
+				cout << "TOO LOW - Your guess is lower than the " << "number. Guess again!" << endl;
+			else
+				cout << "TOO HIGH - Your guess is higher than " << "the number. Guess again!" << endl;
+			cout << ++n << endl;
 		}
-		else if (guess < num)
-			cout << "TOO LOW - Your guess is lower than the " << "number. Guess again!" << endl;
-		else
-			cout << "TOO HIGH - Your guess is higher than " << "the number. Guess again!" << endl;
-		cout << ++n << endl;
-	}
 
-	system("pause");
+		system("pause");
+		return 0;
 }
 
 void multtable()
@@ -182,10 +186,12 @@ void multtable()
 	}
 	cout << endl;
 	system("pause");
+	return 0;
 }
 
-void analyze()
+void analyze(string name)
 {
+	string name;
 	int len, i;
 	bool flag = false;
 
@@ -208,11 +214,14 @@ void analyze()
 	}
 
 	system("pause");
+	return 0;
 
 }
 
+
 void rps()
 {
+	const int size = 3;
 	int ai, play;
 	char tH;
 	int win = 0, lose = 0, tie = 0, rounds;
@@ -224,7 +233,7 @@ void rps()
 		cout << "--------------------------------------------------" << endl;
 
 		srand(time(0));
-		ai = (rand() % 3)+1;
+		ai = (rand() % 3);
 
 		//1=paper  2=Scissors  3=Rock
 		if ((tH == 'R' || tH == 'r') && (ai == 1))
@@ -298,4 +307,5 @@ void rps()
 
 
 	system("pause");
+	return 0;
 }
